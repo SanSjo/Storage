@@ -13,14 +13,11 @@ namespace Storage.Controllers
     public class ProductsController : Controller
     {
         private readonly StorageContext _context;
-        IEnumerable<ProductViewModel> _productList;
 
-        public ProductsController(StorageContext context, IEnumerable<ProductViewModel> productList)
+
+        public ProductsController(StorageContext context)
         {
             _context = context;
-            _productList = productList;
-      
-
 
         }
 
@@ -49,7 +46,7 @@ namespace Storage.Controllers
             return View(product);
         }
 
-        public IActionResult CreateList(int? id)
+        public IActionResult CreateList()
         {
 
             List<ProductViewModel> productList = new List<ProductViewModel>();
@@ -67,23 +64,6 @@ namespace Storage.Controllers
                 InventoryValue = sumValues
 
             });
-
-            //var result = (from product in model
-            //              join v in productViewModel on product.Id equals v.Id into productlist
-            //              from list in _productList.DefaultIfEmpty()
-            //              select new { Name = product.Name, Price = product.Price, }
-            //              ).ToList().
-            //              Select(p => new ProductViewModel
-            //              {
-            //                  Count = pCount,
-            //                  Name = p.Name,
-            //                  Price = p.Price,
-            //                  InventoryValue = sumValues
-            //              }).ToList()
-            //                ;
-
-            //var total = ViewBag.Total = model.Sum(p => p.Price);
-
 
             return View(result);
 
