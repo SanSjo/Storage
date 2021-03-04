@@ -19,6 +19,8 @@ namespace Storage.Models
         public string Category { get; set; }
         [Range(1, 100)]
         public string Shelf { get; set; }
+        [Required]
+        [Range(0, 100)]
         public int Count { get; set; }
         [StringLength(200)]
         public string Description { get; set; }

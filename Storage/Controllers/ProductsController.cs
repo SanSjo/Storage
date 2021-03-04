@@ -49,13 +49,8 @@ namespace Storage.Controllers
         public IActionResult CreateList()
         {
 
-            List<ProductViewModel> productList = new List<ProductViewModel>();
-
             var model = _context.Product;
-            var sumValues = model.Sum(p => p.Price);
-            var productViewModel = _context.ProductViewModel;
         
-          
             var result = model.Select(p => new ProductViewModel
             {
                 Count = p.Count,
