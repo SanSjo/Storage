@@ -58,10 +58,10 @@ namespace Storage.Controllers
           
             var result = model.Select(p => new ProductViewModel
             {
-                Count = model.Count(),
+                Count = p.Count,
                 Name = p.Name,
                 Price = p.Price,
-                InventoryValue = sumValues
+                InventoryValue = p.Count * p.Price
 
             });
 
@@ -89,7 +89,7 @@ namespace Storage.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,OrderDate,Shelf,Description,Category")] Product product)
+        public async Task<IActionResult> Create([Bind("Id,Name,Price,OrderDate,Shelf,Count,Description,Category")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -121,7 +121,7 @@ namespace Storage.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,OrderDate,Shelf,Description,Category")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,OrderDate,Shelf,Count,Description,Category")] Product product)
         {
             if (id != product.Id)
             {
